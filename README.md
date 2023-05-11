@@ -1,1 +1,1 @@
-# Web3-Starter-Kit
+# glitch-bifrost-client
