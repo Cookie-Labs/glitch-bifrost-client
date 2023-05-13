@@ -8,7 +8,7 @@ const ModalContainer = styled.div`
   z-index: 100;
   left: 0;
   top: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: auto;
   -webkit-backdrop-filter: blur(5px);

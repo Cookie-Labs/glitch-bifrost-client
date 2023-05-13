@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
     "@fontsource/do-hyeon": "^4.5.10",
     "@fontsource/roboto-condensed": "^4.5.9",
     "@fontsource/shrikhand": "^4.5.9",
@@ -19,6 +21,7 @@
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
     "recoil": "^0.7.6",
+    "simplebar-react": "^3.2.4",
     "styled-components": "^5.3.6",
     "styled-reset": "^4.4.2",
     "web-vitals": "^2.1.4"

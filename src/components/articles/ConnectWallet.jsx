@@ -84,7 +84,7 @@ const WalletButton = styled.button`
   align-items: center;
   cursor: pointer;
   border-radius: 1rem;
-  width: 100%;
+  min-width: 10rem;
   height: 3rem;
   padding: 0.4rem;
   font-size: 1.2rem;
