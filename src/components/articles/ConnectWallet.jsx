@@ -9,8 +9,7 @@ import { formatAddress } from '@utils/parser';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { userAccount, userWalletType, userNetworkId } from '@states/userState';
 import CustomModal from '@articles/CustomModal';
-// import { networks } from '@constants/networkInfo';
-// import { useNavigate } from 'react-router-dom';
+import { networks } from '@constants/networkInfo';
 
 const Container = styled.div`
   display: flex;
@@ -62,7 +61,7 @@ const MyAddress = styled.div`
   font-size: 1.5rem;
   font-weight: 500;
   color: ${colors.textPrimary};
-`
+`;
 
 const borderGradient = keyframes`
   0% {
@@ -160,52 +159,7 @@ const ConnectWallet = () => {
   const [account, setAccount] = useRecoilState(userAccount);
   const [walletType, setWalletType] = useRecoilState(userWalletType);
   const setNetworkId = useSetRecoilState(userNetworkId);
-  // const supportChainIds = Object.values(networks).map(
-  //   (network) => network.chainId,
-  // );
-
-  const loginMetamask = async () => {
-    if (!metamask) {
-      toast.error('Metamask installation is required');
-      window.open(
-        'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn',
-      );
-      return;
-    }
-
-    try {
-      const accounts = await toast.promise(
-        metamask.request({
-          method: 'eth_requestAccounts',
-        }),
-        { pending: 'Interlocking metamask wallet...' },
-        { closeButton: true },
-      );
-      const chainId = await metamask.request({ method: 'eth_chainId' });
-      setAccount(accounts[0]);
-      setWalletType('Metamask');
-      setNetworkId(chainId);
-      localStorage.setItem('_user', accounts[0]);
-      localStorage.setItem('_wallet', 'Metamask');
-
-      // for (let networkId of supportChainIds) {
-      //   if (chainId === networkId) {
-      //     return;
-      //   }
-      // }
-
-      toast.success(`${formatAddress(accounts[0])}, welcome.`, {
-        autoClose: 1500,
-      });
-    } catch {
-      toast.error(
-        'Login failed. Please turn off your browser and turn it on again.',
-        {
-          autoClose: 1500,
-        },
-      );
-    }
-  };
+  const bifrostMainId = networks['bifrostMain'].chainId;
 
   const loginBiport = async () => {
     if (!biport) {
@@ -217,6 +171,7 @@ const ConnectWallet = () => {
     }
 
     try {
+      // 지갑 연결을 위해
       const accounts = await toast.promise(
         biport.request({
           method: 'eth_requestAccounts',
@@ -224,29 +179,119 @@ const ConnectWallet = () => {
         { pending: 'Interlocking biport wallet...' },
         { closeButton: true },
       );
+
+      // 현재 연결되어 있는 네트워크 ID 받아오기
       const chainId = await biport.request({ method: 'eth_chainId' });
+
+      // 지갑에 있는 계정들 중 유저가 체크한 계정 권한 받기
+      await biport.request({
+        method: 'wallet_requestPermissions',
+        params: [{ eth_accounts: {} }],
+      });
+
+      // 받아온 정보들 저장
       setAccount(accounts[0]);
       setWalletType('Biport');
       setNetworkId(chainId);
       localStorage.setItem('_user', accounts[0]);
       localStorage.setItem('_wallet', 'Biport');
+      localStorage.setItem('_chainId', chainId);
 
-      // for (let networkId of supportChainIds) {
-      //   if (chainId === networkId) {
-      //     return;
-      //   }
-      // }
+      // 현재 연결되어 있는 바이프로스트 네트워크로 바꾸기
+      if (chainId !== bifrostMainId) {
+        try {
+          await biport.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: bifrostMainId }],
+          });
+          setNetworkId(bifrostMainId);
+          localStorage.setItem('_chainId', bifrostMainId);
+        } catch (switchError) {
+          toast.error('Switch network FAILED', {
+            autoClose: 1500,
+          });
+        }
+      }
 
       toast.success(`${formatAddress(accounts[0])}, welcome.`, {
         autoClose: 1500,
       });
     } catch {
-      toast.error(
-        'Login failed. Please turn off your browser and turn it on again.',
-        {
-          autoClose: 1500,
-        },
+      toast.error('Login failed. Please refresh your browser.', {
+        autoClose: 1500,
+      });
+    }
+  };
+
+  const loginMetamask = async () => {
+    if (!metamask) {
+      toast.error('Metamask installation is required');
+      window.open(
+        'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn',
       );
+      return;
+    }
+
+    try {
+      // 지갑 연결을 위해
+      const accounts = await toast.promise(
+        metamask.request({
+          method: 'eth_requestAccounts',
+        }),
+        { pending: 'Interlocking metamask wallet...' },
+        { closeButton: true },
+      );
+
+      // 현재 연결되어 있는 네트워크 ID 받아오기
+      const chainId = await metamask.request({ method: 'eth_chainId' });
+
+      // 지갑에 있는 계정들 중 유저가 체크한 계정 권한 받기
+      await metamask.request({
+        method: 'wallet_requestPermissions',
+        params: [{ eth_accounts: {} }],
+      });
+
+      // 받아온 정보들 저장
+      setAccount(accounts[0]);
+      setWalletType('Metamask');
+      setNetworkId(chainId);
+      localStorage.setItem('_user', accounts[0]);
+      localStorage.setItem('_wallet', 'Metamask');
+      localStorage.setItem('_chainId', chainId);
+
+      // 현재 연결되어 있는 바이프로스트 네트워크로 바꾸기 + 없으면 추가
+      if (chainId !== bifrostMainId) {
+        try {
+          await metamask.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: bifrostMainId }],
+          });
+          setNetworkId(bifrostMainId);
+          localStorage.setItem('_chainId', bifrostMainId);
+        } catch (switchError) {
+          if (switchError.code === 4902) {
+            try {
+              await metamask.request({
+                method: 'wallet_addEthereumChain',
+                params: [networks['bifrostMain']],
+              });
+              setNetworkId(bifrostMainId);
+              localStorage.setItem('_chainId', bifrostMainId);
+            } catch (addError) {
+              console.error('Add new network FAILED', addError);
+            }
+          }
+          console.error('Switch network FAILED', switchError);
+        }
+      }
+
+      toast.success(`${formatAddress(accounts[0])}, welcome.`, {
+        autoClose: 1500,
+      });
+    } catch {
+      toast.error('Login failed. Please refresh your browser.', {
+        autoClose: 1500,
+      });
     }
   };
 
@@ -267,6 +312,7 @@ const ConnectWallet = () => {
     setNetworkId('');
     localStorage.removeItem('_user');
     localStorage.removeItem('_wallet');
+    localStorage.removeItem('_chainId');
 
     setShowDisconnectOptions(false);
     setTimeout(() => window.location.reload(), 1500);

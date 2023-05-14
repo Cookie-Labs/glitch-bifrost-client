@@ -6,14 +6,14 @@ import ScrollToTop from '@articles/ScrollToTop';
 import App from './App';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import CheckWallet from '@articles/CheckWallet';
+import CheckWallet from '@articles/CheckWallet';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <RecoilRoot>
     <BrowserRouter>
       <ScrollToTop />
-      {/* <CheckWallet /> */}
+      <CheckWallet />
       <App />
     </BrowserRouter>
     <ToastContainer theme="dark" />
