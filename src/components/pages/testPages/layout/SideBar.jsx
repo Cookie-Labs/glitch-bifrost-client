@@ -6,21 +6,48 @@ import { Drawer, useTheme, useMediaQuery } from '@mui/material';
 import { Scrollbar } from '@atoms/scrollbar';
 import shoeBoxLogo from '@assets/images/ShoeBox_Logo.png';
 import SideNavItems from './SideNavItems';
-import { TbCircleNumber1, TbCircleNumber2 } from 'react-icons/tb';
+import {BiHome, BiBarChartAlt, BiGift} from 'react-icons/bi';
+import {SiHiveBlockchain} from 'react-icons/si';
+import {HiOutlineTicket} from 'react-icons/hi';
+import {TbShoe} from 'react-icons/tb';
 import { SIDE_NAV_WIDTH, TOP_NAV_HEIGHT } from './layoutConst';
 
 const items = [
   {
-    title: 'TEST1',
+    title: 'MAIN',
     path: '/',
-    icon: <TbCircleNumber1 size="30" />,
+    icon: <BiHome size="30"/>,
     color: `${colors.primary80}`,
   },
   {
-    title: 'TEST2',
-    path: '/test2',
-    icon: <TbCircleNumber2 size="30" />,
-    color: `${colors.secondary80}`,
+    title: 'OVERVIEW',
+    path: '/overview',
+    icon: <BiBarChartAlt size="30"/>,
+    color: `${colors.primary80}`,
+  },
+  {
+    title: 'CHAINS',
+    path: '/chains',
+    icon: <SiHiveBlockchain size="30" />,
+    color: `${colors.primary80}`,
+  },
+  {
+    title: 'AIRDROPS',
+    path: '/airdrops',
+    icon: <BiGift size="30" />,
+    color: `${colors.primary80}`,
+  },
+  {
+    title: 'RAFFLES',
+    path: '/raffles',
+    icon: <HiOutlineTicket size="30" />,
+    color: `${colors.primary80}`,
+  },
+  {
+    title: 'MY SHOES',
+    path: '/myShoes',
+    icon: <TbShoe size="30" />,
+    color: `${colors.primary80}`,
   },
 ];
 
@@ -41,7 +68,6 @@ const NavButtonsWrapper = styled.div`
 
 const LogoImage = styled.img`
   height: ${TOP_NAV_HEIGHT};
-  width: ${SIDE_NAV_WIDTH};
 `;
 
 const SideBar = ({ open, onNavClose }) => {
