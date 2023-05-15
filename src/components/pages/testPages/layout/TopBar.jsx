@@ -5,8 +5,11 @@ import { useTheme, useMediaQuery } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { TOP_NAV_HEIGHT, SIDE_NAV_WIDTH } from './layoutConst';
 import ConnectWallet from '@articles/ConnectWallet';
+import CurrentNetwork from '@articles/CurrentNetwork';
 import { BiMenu } from 'react-icons/bi';
 import shoeBoxLogo from '@assets/images/ShoeBox_Logo.png';
+import bifswapLogo from '@assets/images/Bifswap_image.svg';
+import shoeswapLogo from '@assets/images/Shoeswap_image.svg';
 
 const TopBarContainer = styled.div`
   backdrop-filter: blur(6px);
@@ -32,7 +35,7 @@ const TopBarWrapper = styled.div`
 const ButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 1.5rem;
 `;
 
@@ -44,12 +47,14 @@ const WalletButtonWrapper = styled.div`
 `;
 
 const IconButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 `;
 
 const LogoImage = styled.img`
   width: 5rem;
-  margin-right: 2rem;
 
   &:hover {
     width: 4.8rem;
@@ -57,7 +62,17 @@ const LogoImage = styled.img`
   }
 `;
 
+const SwapImage = styled.img`
+  width: 10rem;
+
+  &:hover {
+    width: 9.5rem;
+    transition: 0.3s;
+  }
+`;
+
 const TopBar = ({ onNavOpen }) => {
+  const account = localStorage.getItem('_user');
   const navigate = useNavigate();
   const theme = useTheme();
   const lgUp = useMediaQuery(theme.breakpoints.up('lg'));
@@ -73,9 +88,9 @@ const TopBar = ({ onNavOpen }) => {
                   <BiMenu size="30" color={colors.bgWhite} />
                 </IconButton>
                 <IconButton
-                    onClick={() => {
-                        navigate('/');
-                    }}
+                  onClick={() => {
+                    navigate('/');
+                  }}
                 >
                   <LogoImage src={shoeBoxLogo} />
                 </IconButton>
@@ -83,6 +98,25 @@ const TopBar = ({ onNavOpen }) => {
             )}
           </ButtonsWrapper>
           <ButtonsWrapper>
+            <IconButton
+              onClick={() => {
+                window.open('/shoeswap', '_blank');
+              }}
+            >
+              <SwapImage src={shoeswapLogo} />
+            </IconButton>
+            <IconButton
+              onClick={() => {
+                window.open('https://bifswap.com/swap');
+              }}
+            >
+              <SwapImage src={bifswapLogo} />
+            </IconButton>
+            {account && (
+              <WalletButtonWrapper>
+                <CurrentNetwork />
+              </WalletButtonWrapper>
+            )}
             <WalletButtonWrapper>
               <ConnectWallet />
             </WalletButtonWrapper>

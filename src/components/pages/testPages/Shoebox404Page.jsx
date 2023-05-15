@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Test404Page = () => {
+const Shoebox404Page = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -11,4 +11,4 @@ const Test404Page = () => {
   return null;
 };
 
-export default Test404Page;
+export default Shoebox404Page;

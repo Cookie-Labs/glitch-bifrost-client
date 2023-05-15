@@ -216,6 +216,7 @@ const ConnectWallet = () => {
       toast.success(`${formatAddress(accounts[0])}, welcome.`, {
         autoClose: 1500,
       });
+      setTimeout(() => window.location.reload(), 1500);
     } catch {
       toast.error('Login failed. Please refresh your browser.', {
         autoClose: 1500,
@@ -288,6 +289,7 @@ const ConnectWallet = () => {
       toast.success(`${formatAddress(accounts[0])}, welcome.`, {
         autoClose: 1500,
       });
+      setTimeout(() => window.location.reload(), 1500);
     } catch {
       toast.error('Login failed. Please refresh your browser.', {
         autoClose: 1500,
