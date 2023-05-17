@@ -1,3 +1,10 @@
+import BifrostIcon from '@assets/icons/Bifrost_Icon.png';
+import EthereumIcon from '@assets/icons/Ethereum_Icon.png';
+import BSCIcon from '@assets/icons/BSC_Icon.png';
+import KlaytnIcon from '@assets/icons/Klaytn_Icon.png';
+import PolygonIcon from '@assets/icons/Polygon_Icon.png';
+import AvalancheIcon from '@assets/icons/Avalanche_Icon.png';
+
 export const networks = {
   bifrostMain: {
     chainId: `0x${Number(3068).toString(16)}`,
@@ -130,5 +137,44 @@ export const networks = {
       decimals: 18,
     },
     blockExplorerUrls: ['https://mumbai.polygonscan.com/'],
+  },
+};
+
+export const networksIcons = {
+  bifrostMain: {
+    icon: BifrostIcon,
+  },
+  bifrostTest: {
+    icon: BifrostIcon,
+  },
+  ethereumMain: {
+    icon: EthereumIcon,
+  },
+  ethereumTest: {
+    icon: EthereumIcon,
+  },
+  bnbMain: {
+    icon: BSCIcon,
+  },
+  bnbTest: {
+    icon: BSCIcon,
+  },
+  avalancheMain: {
+    icon: AvalancheIcon,
+  },
+  avalancheTest: {
+    icon: AvalancheIcon,
+  },
+  klaytnMain: {
+    icon: KlaytnIcon,
+  },
+  klaytnTest: {
+    icon: KlaytnIcon,
+  },
+  polygonMain: {
+    icon: PolygonIcon,
+  },
+  polygonTest: {
+    icon: PolygonIcon,
   },
 };

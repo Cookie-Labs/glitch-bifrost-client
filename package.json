@@ -24,7 +24,8 @@
     "simplebar-react": "^3.2.4",
     "styled-components": "^5.3.6",
     "styled-reset": "^4.4.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "web3": "^1.10.0"
   },
   "scripts": {
     "start": "react-app-rewired start",
