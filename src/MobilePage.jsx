@@ -8,7 +8,7 @@ const MobilePage = () => {
 
   return (
     <div>
-      <span>Please access the PC version.</span>
+      <div>Please access the PC version.</div>
       <button onClick={handleLinkCopy}>Copying a Link</button>
     </div>
   );

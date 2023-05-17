@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import * as colors from '@styles/colors';
-import { networks } from '@constants/networkInfo';
+import { useRecoilValue } from 'recoil';
+import { userState } from '@states/userState';
+import { networks, networksIcons } from '@constants/networkInfo';
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-`;
-
-const CurrentNetworkWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -20,28 +15,39 @@ const CurrentNetworkWrapper = styled.div`
   height: 3rem;
   padding: 0.4rem;
   font-size: 1.2rem;
+  gap: 0.5rem;
 `;
 
+const IconWrapper = styled.img`
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: ${colors.bgQuaternary};
+`
+
 const CurrentNetwork = () => {
-  const networkId = localStorage.getItem('_chainId');
+  const { networkId } = useRecoilValue(userState);
   const [networkName, setNetworkName] = useState('');
+  const [networkIcon, setNetworkIcon] = useState('');
 
   useEffect(() => {
-    setNetworkName(getChainName(networkId, networks));
+    getChain(networkId);
+    console.log(networkName);
+    console.log(networkIcon);
   }, [networkId]);
 
-  const getChainName = (chainId, allNetworks) => {
-    for (let networkKey in allNetworks) {
-      if (allNetworks[networkKey].chainId === chainId) {
-        return allNetworks[networkKey].chainName;
+  function getChain(chainId) {
+    for (let networkKey in networks) {
+      if (networks[networkKey].chainId === chainId) {
+        setNetworkName(networks[networkKey].chainName);
+        setNetworkIcon(networksIcons[networkKey].icon);
       }
     }
-    return 'Unknown Chain';
   };
 
   return (
     <Container>
-      <CurrentNetworkWrapper>{networkName}</CurrentNetworkWrapper>
+      <IconWrapper src={networkIcon} />
+      <span>{networkName}</span>
     </Container>
   );
 };

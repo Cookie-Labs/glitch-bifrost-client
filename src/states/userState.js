@@ -1,4 +1,4 @@
-import { atom, selector } from 'recoil';
+ import { atom, selector } from 'recoil';
 
 export const userAccount = atom({
   key: 'userState/userAccount',
@@ -12,7 +12,7 @@ export const userWalletType = atom({
 
 export const userNetworkId = atom({
   key: 'userState/userNetworkId',
-  default: '',
+  default: localStorage.getItem('_chainId'),
 });
 
 export const userState = selector({
