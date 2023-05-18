@@ -31,8 +31,6 @@ const CurrentNetwork = () => {
 
   useEffect(() => {
     getChain(networkId);
-    console.log(networkName);
-    console.log(networkIcon);
   }, [networkId]);
 
   function getChain(chainId) {
