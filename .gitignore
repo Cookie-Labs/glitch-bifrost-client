@@ -5,6 +5,9 @@
 /node_modules
 /.pnp
 .pnp.js
+ca.crt
+ca.key
+/config
 
 # testing
 /coverage
