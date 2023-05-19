@@ -8,8 +8,6 @@ import ConnectWallet from '@articles/ConnectWallet';
 import CurrentNetwork from '@articles/CurrentNetwork';
 import { BiMenu } from 'react-icons/bi';
 import shoeBoxLogo from '@assets/images/ShoeBox_Logo.png';
-import bifswapLogo from '@assets/images/Bifswap_image.svg';
-import shoeswapLogo from '@assets/images/Shoeswap_image.svg';
 
 const TopBarContainer = styled.div`
   backdrop-filter: blur(6px);
@@ -62,15 +60,6 @@ const LogoImage = styled.img`
   }
 `;
 
-const SwapImage = styled.img`
-  width: 10rem;
-
-  &:hover {
-    width: 9.5rem;
-    transition: 0.3s;
-  }
-`;
-
 const TopBar = ({ onNavOpen }) => {
   const account = localStorage.getItem('_user');
   const navigate = useNavigate();
@@ -98,20 +87,6 @@ const TopBar = ({ onNavOpen }) => {
             )}
           </ButtonsWrapper>
           <ButtonsWrapper>
-            <IconButton
-              onClick={() => {
-                window.open('/shoeswap', '_blank');
-              }}
-            >
-              <SwapImage src={shoeswapLogo} />
-            </IconButton>
-            <IconButton
-              onClick={() => {
-                window.open('https://bifswap.com/swap');
-              }}
-            >
-              <SwapImage src={bifswapLogo} />
-            </IconButton>
             {account && (
               <WalletButtonWrapper>
                 <CurrentNetwork />

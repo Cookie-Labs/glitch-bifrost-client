@@ -6,47 +6,34 @@ import { Drawer, useTheme, useMediaQuery } from '@mui/material';
 import { Scrollbar } from '@atoms/scrollbar';
 import shoeBoxLogo from '@assets/images/ShoeBox_Logo.png';
 import SideNavItems from './SideNavItems';
-import {BiHome, BiBarChartAlt, BiGift} from 'react-icons/bi';
-import {SiHiveBlockchain} from 'react-icons/si';
-import {HiOutlineTicket} from 'react-icons/hi';
-import {TbShoe} from 'react-icons/tb';
+import { BiHome, BiBarChartAlt, BiGift, BiShoppingBag } from 'react-icons/bi';
+import { TbShoe } from 'react-icons/tb';
 import { SIDE_NAV_WIDTH, TOP_NAV_HEIGHT } from './layoutConst';
+import bmallImage from '@assets/images/Bmall_image.svg';
 
 const items = [
   {
-    title: 'MAIN',
-    path: '/',
-    icon: <BiHome size="30"/>,
-    color: `${colors.primary80}`,
-  },
-  {
     title: 'OVERVIEW',
-    path: '/overview',
-    icon: <BiBarChartAlt size="30"/>,
+    path: '/',
+    icon: <BiHome size="2rem" />,
     color: `${colors.primary80}`,
   },
   {
-    title: 'CHAINS',
-    path: '/chains',
-    icon: <SiHiveBlockchain size="30" />,
+    title: 'SHOE SWAP',
+    path: '/shoeSwap',
+    icon: <BiBarChartAlt size="2rem" />,
     color: `${colors.primary80}`,
   },
   {
-    title: 'AIRDROPS',
-    path: '/airdrops',
-    icon: <BiGift size="30" />,
-    color: `${colors.primary80}`,
-  },
-  {
-    title: 'RAFFLES',
-    path: '/raffles',
-    icon: <HiOutlineTicket size="30" />,
+    title: 'EVENT',
+    path: '/event',
+    icon: <BiGift size="2rem" />,
     color: `${colors.primary80}`,
   },
   {
     title: 'MY SHOES',
     path: '/myShoes',
-    icon: <TbShoe size="30" />,
+    icon: <TbShoe size="2rem" />,
     color: `${colors.primary80}`,
   },
 ];
@@ -68,6 +55,20 @@ const NavButtonsWrapper = styled.div`
 
 const LogoImage = styled.img`
   height: ${TOP_NAV_HEIGHT};
+`;
+
+const IconButton = styled.button`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+  cursor: pointer;
+  color: ${colors.bgWhite};
+  padding: 0.5rem 1rem;
+`;
+
+const MallImage = styled.img`
+  width: 4.5rem;
 `;
 
 const SideBar = ({ open, onNavClose }) => {
@@ -107,6 +108,14 @@ const SideBar = ({ open, onNavClose }) => {
               />
             );
           })}
+          <IconButton
+            onClick={() => {
+              window.open('https://bmall.store/ko');
+            }}
+          >
+            <BiShoppingBag size="2rem" />
+            <MallImage src={bmallImage} />
+          </IconButton>
         </NavButtonsWrapper>
       </SideBarContainer>
     </Scrollbar>
