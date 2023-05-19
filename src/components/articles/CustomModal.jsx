@@ -20,7 +20,7 @@ const ModalContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  width: 30vw;
+  width: 50vw;
   min-height: 10vh;
   font-size: 1.5rem;
   font-weight: 500;
