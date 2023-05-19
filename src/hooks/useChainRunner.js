@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil';
 import { userState } from '@states/userState';
 
 export default function useChainRunner() {
-  const { walletType } = useRecoilValue(userState);
+  const { walletType, networkId } = useRecoilValue(userState);
   const [client, setClient] = useState(null);
 
   useEffect(() => {
@@ -27,18 +27,21 @@ export default function useChainRunner() {
       );
       setClient(_client);
     } else return;
-  }, [walletType]);
+  }, [walletType, networkId]);
 
-  async function implementBridge() {
+  async function approveBridge(_amount) {
     if (client !== null) {
-      const response = await client.call(
-        'Glitch.run.bridge', // bridge 서비스를 이용할 protocol의 ID
-        undefined,
-        'bifrostBridge',
-        '0x0000000000000000000000000000000000000000',
-        BigNumber(1),
-        BigNumber(5),
-        BigNumber(49088),
+      const response = await toast.promise(
+        client.call(
+          'Glitch.approve.bridge',
+          undefined,
+          'bifrostBridge',
+          '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
+          BigNumber(_amount),
+          BigNumber(137),
+        ),
+        { pending: 'Please wait for the approve...' },
+        { closeButton: true },
       );
       console.log(JSON.stringify(response.result, undefined, 2));
     } else {
@@ -48,5 +51,28 @@ export default function useChainRunner() {
     }
   }
 
-  return { implementBridge };
+  async function implementBridge(_amount) {
+    if (client !== null) {
+      const response = await toast.promise(
+        client.call(
+          'Glitch.run.bridge',
+          undefined,
+          'bifrostBridge',
+          '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
+          BigNumber(_amount),
+          BigNumber(137),
+          BigNumber(3068),
+        ),
+        { pending: 'Please wait for the bridge...' },
+        { closeButton: true },
+      );
+      console.log(JSON.stringify(response.result, undefined, 2));
+    } else {
+      toast.error('Please log in first', {
+        autoClose: 1500,
+      });
+    }
+  }
+
+  return { approveBridge, implementBridge, client };
 }
