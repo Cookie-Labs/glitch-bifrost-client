@@ -10,7 +10,6 @@ import p2eImage from '@assets/images/p2e.png';
 import useWeb3 from '@hooks/useWeb3';
 import useOracle from '@hooks/useOracle';
 import useChainRunner from '@hooks/useChainRunner';
-import useSwap from '@hooks/useSwap';
 
 const Container = styled.div`
   width: 100%;
@@ -101,49 +100,6 @@ const ShoeboxOverviewPage = () => {
   const [tab, setTab] = useState('M2E');
   const [isLoading, setIsLoading] = useState(true);
 
-  const { web3, signMessage, isSigned } = useWeb3();
-  const { BFC, BIFI, ETH, BNB, MATIC } = useOracle();
-  const { client, approveBridge, implementBridge } = useChainRunner();
-  const { allPairs } = useSwap();
-
-  const [bridgeTokenAddress, setBridgeTokenAddress] = useState(
-    '0x0000000000000000000000000000000000000000',
-  ); // polygon WMATIC
-  const [bridgeAmount, setBridgeAmount] = useState(0);
-  const [bridgeFromNetwork, setBridgeFromNetwork] = useState(137); // polygon main network
-  const [bridgeToNetwork, setBridgeToNetwork] = useState(3068); // bifrost main network
-
-  // console.log(web3);
-  // console.log(client);
-  console.log(allPairs);
-
-  async function doBridge() {
-    try {
-      // await approveBridge(bridgeTokenAddress, bridgeAmount, bridgeFromNetwork);
-      console.log(bridgeTokenAddress);
-      console.log(bridgeAmount);
-      console.log(bridgeFromNetwork);
-      console.log(bridgeToNetwork);
-      await implementBridge(
-        bridgeTokenAddress,
-        bridgeAmount,
-        bridgeFromNetwork,
-        bridgeToNetwork,
-      );
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
-  const handleBridgeAmount = (e) => {
-    const newValue = e.target.value;
-    if (/^\d*$/.test(newValue)) {
-      setBridgeAmount(Number(newValue));
-    } else {
-      e.target.value = bridgeAmount;
-    }
-  };
-
   setTimeout(() => {
     setIsLoading(false);
   }, 2500);
@@ -189,21 +145,6 @@ const ShoeboxOverviewPage = () => {
           <CoinTableImage src={p2eImage} />
         ) : null}
       </CoinTableWrapper>
-      <div>
-        <TestButton onClick={() => signMessage('HELLO')}>TEST SIGN</TestButton>
-      </div>
-      <div>
-        <input onChange={handleBridgeAmount} value={bridgeAmount} />
-        <TestButton onClick={doBridge}>
-          TEST bridge polygonMainnet to bifrostMainnet
-        </TestButton>
-      </div>
-      <div>{isSigned}</div>
-      <div>BFC: {BFC}USDT</div>
-      <div>BIFI: {BIFI}USDT</div>
-      <div>ETH: {ETH}USDT</div>
-      <div>BNB: {BNB}USDT</div>
-      <div>MATIC: {MATIC}USDT</div>
     </Container>
   );
 };

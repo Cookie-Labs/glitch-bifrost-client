@@ -24,7 +24,7 @@ const ModalContent = styled.div`
   min-height: 10vh;
   font-size: 1.5rem;
   font-weight: 500;
-  background-color: ${colors.bgTertiary};
+  background-color: ${colors.bgWhiteSecondary};
   border-radius: 0.8rem;
   padding: 1rem;
   border: none;
@@ -64,11 +64,11 @@ const CloseButton = styled.button`
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background-color: ${colors.bgSecondary};
-  border: 1px solid ${colors.bgWhiteSecondary};
+  background-color: ${colors.bgWhiteSecondary};
+  border: 1px solid ${colors.bgWhiteTertiary};
 
   &:hover {
-    background-color: ${colors.bgWhiteSecondary};
+    background-color: ${colors.bgWhiteTertiary};
   }
 `;
 

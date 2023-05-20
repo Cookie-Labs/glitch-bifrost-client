@@ -28,14 +28,14 @@ const SelectButton = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${colors.bgTertiary};
+  background-color: ${colors.bgWhiteSecondary};
   width: 100%;
   height: 4rem;
   border-radius: 2rem;
   font-size: 1.5rem;
   font-weight: 500;
-  color: ${colors.textPrimary};
-  border: 1px solid ${colors.textPrimary};
+  color: ${colors.textBlack};
+  border: 1px solid ${colors.bgWhiteTertiary};
   outline: none;
   user-select: none;
   -webkit-user-select: none;
@@ -48,7 +48,7 @@ const SelectButton = styled.button`
   padding: 0 2rem;
 
   &:hover {
-    background-color: ${colors.bgWhiteSecondary};
+    background-color: ${colors.bgWhiteTertiary};
   }
 `;
 
@@ -60,7 +60,7 @@ const MyAddress = styled.div`
   height: 2rem;
   font-size: 1.5rem;
   font-weight: 500;
-  color: ${colors.textPrimary};
+  color: ${colors.textBlack};
 `;
 
 const borderGradient = keyframes`
@@ -87,7 +87,7 @@ const WalletButton = styled.button`
   height: 3rem;
   padding: 0.4rem;
   font-size: 1.2rem;
-  background-color: ${colors.bgPrimary};
+  background-color: ${colors.bgWhitePrimary};
   position: relative;
 
   &:after {
@@ -115,7 +115,7 @@ const WalletButton = styled.button`
   }
 
   &:hover {
-    background-color: ${colors.bgTertiary};
+    background-color: ${colors.bgWhiteSecondary};
   }
 `;
 

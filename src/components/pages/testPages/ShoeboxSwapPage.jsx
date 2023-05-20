@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import * as colors from '@styles/colors';
-import ShoeBoxNetworkModal from './ShoeBoxNetworkModal';
 import useSwap from '@hooks/useSwap';
+import useChainRunner from '@hooks/useChainRunner';
 
 const Container = styled.div`
   width: 100%;
@@ -94,8 +94,43 @@ const ShoeboxSwapPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentBalance, setCurrentBalance] = useState('0');
   const [exchange, setExchange] = useState('0');
-
   const { allPairs } = useSwap();
+  const { client, approveBridge, implementBridge } = useChainRunner();
+
+  const [bridgeTokenAddress, setBridgeTokenAddress] = useState(
+    '0x0000000000000000000000000000000000000000',
+  ); // polygon WMATIC
+  const [bridgeAmount, setBridgeAmount] = useState(0);
+  const [bridgeFromNetwork, setBridgeFromNetwork] = useState(137); // polygon main network
+  const [bridgeToNetwork, setBridgeToNetwork] = useState(3068); // bifrost main network
+
+  async function doBridge() {
+    try {
+      // await approveBridge(bridgeTokenAddress, bridgeAmount, bridgeFromNetwork);
+      console.log(bridgeTokenAddress);
+      console.log(bridgeAmount);
+      console.log(bridgeFromNetwork);
+      console.log(bridgeToNetwork);
+      await implementBridge(
+        bridgeTokenAddress,
+        bridgeAmount,
+        bridgeFromNetwork,
+        bridgeToNetwork,
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  const handleBridgeAmount = (e) => {
+    const newValue = e.target.value;
+    if (/^\d*$/.test(newValue)) {
+      setBridgeAmount(Number(newValue));
+    } else {
+      e.target.value = bridgeAmount;
+    }
+  };
+  
   console.log(allPairs);
 
   const openModal = () => {
