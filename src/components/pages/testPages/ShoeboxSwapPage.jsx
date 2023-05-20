@@ -59,7 +59,7 @@ const SelectNetwork = styled.button`
 
 const ResetButton = styled.button`
   cursor: pointer;
-  color: ${colors.bgWhite};
+  color: ${colors.bgWhiteSecondary};
 
   &:hover {
     color: ${colors.textPrimary};
@@ -85,7 +85,7 @@ const SwapWrapper = styled.div`
   align-items: center;
   padding: 2rem;
   background-color: ${({ isFrom }) =>
-    isFrom ? colors.bgPrimary : colors.bgWhite};
+    isFrom ? colors.bgPrimary : colors.bgWhiteSecondary};
   border-radius: 0 0 1rem 1rem;
 `;
 

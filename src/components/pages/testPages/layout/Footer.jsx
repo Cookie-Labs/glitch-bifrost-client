@@ -13,7 +13,7 @@ const FooterContainer = styled.div`
   height: ${FOOTER_H};
   margin-left: ${(props) => (props.lgUp ? `${SIDE_NAV_WIDTH}` : 0)};
   padding: 20px;
-  background-color: ${colors.bgBlack};
+  background-color: ${colors.bgWhiteSecondary};
 `;
 
 const LogoImage = styled.img`

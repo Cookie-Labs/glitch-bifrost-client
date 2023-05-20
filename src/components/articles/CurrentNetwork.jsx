@@ -9,9 +9,9 @@ const Container = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  border: 1px solid ${colors.bgQuaternary};
+  border: 3px solid ${colors.bgQuaternary};
   border-radius: 1rem;
-  min-width: 10rem;
+  min-width: 12rem;
   height: 3rem;
   padding: 0.4rem;
   font-size: 1.2rem;

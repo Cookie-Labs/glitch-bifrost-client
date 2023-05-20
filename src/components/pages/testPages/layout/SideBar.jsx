@@ -6,16 +6,13 @@ import { Drawer, useTheme, useMediaQuery } from '@mui/material';
 import { Scrollbar } from '@atoms/scrollbar';
 import shoeBoxLogo from '@assets/images/ShoeBox_Logo.png';
 import SideNavItems from './SideNavItems';
-import {
-  BiHome,
-  BiGift,
-  BiShoppingBag,
-  BiCalendarCheck,
-} from 'react-icons/bi';
+import { BiHome, BiGift, BiShoppingBag, BiCalendarCheck } from 'react-icons/bi';
 import { AiOutlineSwap } from 'react-icons/ai';
 import { TbShoe } from 'react-icons/tb';
-import { SIDE_NAV_WIDTH, TOP_NAV_HEIGHT } from './layoutConst';
+import { SIDE_NAV_WIDTH } from './layoutConst';
 import bmallImage from '@assets/images/Bmall_image.svg';
+import ConnectWallet from '@articles/ConnectWallet';
+import CurrentNetwork from '@articles/CurrentNetwork';
 
 const items = [
   {
@@ -61,12 +58,11 @@ const SideBarContainer = styled.div`
 const NavButtonsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1.4rem 0;
-  gap: 1.5rem;
+  gap: 1rem;
 `;
 
 const LogoImage = styled.img`
-  height: ${TOP_NAV_HEIGHT};
+  height: 7rem;
 `;
 
 const IconButton = styled.button`
@@ -75,7 +71,7 @@ const IconButton = styled.button`
   align-items: center;
   gap: 1.5rem;
   cursor: pointer;
-  color: ${colors.bgWhite};
+  color: ${colors.bgWhiteSecondary};
   padding: 0.5rem 1rem;
 `;
 
@@ -83,7 +79,42 @@ const MallImage = styled.img`
   width: 4.5rem;
 `;
 
+const SideNavTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: ${colors.bgWhiteSecondary};
+  border-top: 1px solid ${colors.bgWhiteSecondary};
+  padding: 1rem;
+  margin-top: 1rem;
+  width: 80%;
+`;
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem 0;
+`;
+
+const WalletButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+
+const ButtonTitle = styled.span`
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: ${colors.bgWhiteSecondary};
+`
+
 const SideBar = ({ open, onNavClose }) => {
+  const account = localStorage.getItem('_user');
   const theme = useTheme();
   const lgUp = useMediaQuery(theme.breakpoints.up('lg'));
   const { pathname } = useLocation();
@@ -102,6 +133,17 @@ const SideBar = ({ open, onNavClose }) => {
     >
       <SideBarContainer>
         <LogoImage src={shoeBoxLogo} />
+        <ButtonsWrapper>
+          {account && (
+            <WalletButtonWrapper>
+              <CurrentNetwork />
+            </WalletButtonWrapper>
+          )}
+          <WalletButtonWrapper>
+            <ConnectWallet />
+          </WalletButtonWrapper>
+        </ButtonsWrapper>
+        <SideNavTitle>Dashboards</SideNavTitle>
         <NavButtonsWrapper>
           {items.map((item) => {
             const active1 = item.path ? pathname === item.path : false;
@@ -126,7 +168,7 @@ const SideBar = ({ open, onNavClose }) => {
             }}
           >
             <BiShoppingBag size="2rem" />
-            <MallImage src={bmallImage} />
+            <ButtonTitle>Marketplace</ButtonTitle>
           </IconButton>
         </NavButtonsWrapper>
       </SideBarContainer>
@@ -140,8 +182,8 @@ const SideBar = ({ open, onNavClose }) => {
         open
         PaperProps={{
           sx: {
-            backgroundColor: `${colors.bgPrimary}`,
-            color: `${colors.textPrimary}`,
+            backgroundColor: `${colors.bgWhitePrimary}`,
+            color: `${colors.textBlack}`,
             width: SIDE_NAV_WIDTH,
           },
         }}

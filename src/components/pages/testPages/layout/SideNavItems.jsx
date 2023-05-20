@@ -12,7 +12,7 @@ const ButtonWrapper = styled.div`
       ? `${colors.textBlack}`
       : props.active
       ? props.activeColor
-      : `${colors.bgWhite}`};
+      : `${colors.bgWhiteSecondary}`};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,11 +32,10 @@ const SideNavItems = ({
     <ButtonBase
       sx={{
         alignItems: 'center',
-        borderRadius: 1,
+        borderRadius: '1rem',
         display: 'flex',
         justifyContent: 'flex-start',
-        pl: '1rem',
-        pr: '1rem',
+        px: '1rem',
         py: '0.5rem',
         textAlign: 'left',
         width: '100%',

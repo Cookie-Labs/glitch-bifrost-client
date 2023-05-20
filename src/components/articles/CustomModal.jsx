@@ -20,7 +20,7 @@ const ModalContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  width: 50vw;
+  width: 30vw;
   min-height: 10vh;
   font-size: 1.5rem;
   font-weight: 500;
@@ -44,7 +44,7 @@ const ModalTitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid ${colors.bgWhite};
+  border-bottom: 1px solid ${colors.bgWhiteSecondary};
   width: 100%;
   height: auto;
   padding-bottom: 1rem;
@@ -65,10 +65,10 @@ const CloseButton = styled.button`
   height: 2.5rem;
   border-radius: 50%;
   background-color: ${colors.bgSecondary};
-  border: 1px solid ${colors.bgWhite};
+  border: 1px solid ${colors.bgWhiteSecondary};
 
   &:hover {
-    background-color: ${colors.bgWhite};
+    background-color: ${colors.bgWhiteSecondary};
   }
 `;
 

@@ -42,14 +42,14 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: ${colors.bgPrimary};    
-    color: ${colors.textPrimary};
+    background-color: ${colors.bgWhitePrimary};    
+    color: ${colors.textBlack};
   }
 
   button {
     border: none;
     padding: 0;
-    color: ${colors.textPrimary};
+    color: ${colors.textBlack};
     text-align: center;
     background-color: transparent;
   }

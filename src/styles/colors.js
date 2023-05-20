@@ -23,7 +23,9 @@ export const bgSecondary = '#242424';
 export const bgTertiary = '#303030';
 export const bgQuaternary = '#3A3A3A';
 export const bgBlack = '#0F0F0F';
-export const bgWhite = '#BBBBBB';
+export const bgWhitePrimary = '#FFFFFF';
+export const bgWhiteSecondary = '#DDDDDD';
+export const bgWhiteTertiary = '#BBBBBB';
 export const bgRed = '#f74b46';
 export const bgBannerButton = 'rgba(0, 0, 0, 0.4)';
 
