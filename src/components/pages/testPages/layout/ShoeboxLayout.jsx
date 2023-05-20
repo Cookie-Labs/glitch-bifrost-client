@@ -6,16 +6,15 @@ import * as colors from '@styles/colors';
 import TopBar from './TopBar';
 import SideBar from './SideBar';
 import Footer from './Footer';
-import { TOP_NAV_HEIGHT, SIDE_NAV_WIDTH} from './layoutConst';
+import { SIDE_NAV_WIDTH } from './layoutConst';
 
 const LayoutWrapper = styled.div`
   margin-left: ${(props) => (props.lgUp ? `${SIDE_NAV_WIDTH}` : 0)};
-  margin-top: ${TOP_NAV_HEIGHT};
-  background-color: ${colors.bgSecondary};
+  background-color: ${colors.bgWhitePrimary};
   width: ${(props) =>
     props.lgUp ? `calc(100vw - ${SIDE_NAV_WIDTH})` : '100vw'};
-  min-height: calc(100vh - ${TOP_NAV_HEIGHT});
-  padding: 1.5rem;
+  min-height: calc(100vh);
+  padding: 2rem 4.5rem;
 `;
 
 const ShoeboxLayout = () => {

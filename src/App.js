@@ -11,7 +11,7 @@ import '@fontsource/roboto-condensed';
 import ShoeboxLayout from '@pages/testPages/layout/ShoeboxLayout';
 import ShoeboxOverviewPage from '@pages/testPages/ShoeboxOverviewPage';
 import ShoeboxSwapPage from '@pages/testPages/ShoeboxSwapPage';
-import ShoeboxEventsPage from '@pages/testPages/layout/ShoeboxEventsPage';
+import ShoeboxEventsPage from '@pages/testPages/ShoeboxEventsPage';
 import ShoeboxMyCalendarPage from '@pages/testPages/ShoeboxMyCalendarPage';
 import ShoeboxMyPage from '@pages/testPages/ShoeboxMyPage';
 import Shoebox404Page from '@pages/testPages/Shoebox404Page';

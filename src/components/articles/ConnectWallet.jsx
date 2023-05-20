@@ -48,7 +48,7 @@ const SelectButton = styled.button`
   padding: 0 2rem;
 
   &:hover {
-    background-color: ${colors.bgWhite};
+    background-color: ${colors.bgWhiteSecondary};
   }
 `;
 
@@ -83,7 +83,7 @@ const WalletButton = styled.button`
   align-items: center;
   cursor: pointer;
   border-radius: 1rem;
-  min-width: 10rem;
+  min-width: 11.5rem;
   height: 3rem;
   padding: 0.4rem;
   font-size: 1.2rem;
