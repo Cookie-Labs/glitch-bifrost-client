@@ -9,7 +9,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  border: 3px solid ${colors.bgQuaternary};
+  border: 3px solid ${colors.bgWhiteTertiary};
   border-radius: 1rem;
   min-width: 12rem;
   height: 3rem;
