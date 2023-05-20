@@ -43,7 +43,7 @@ const TopBar = ({ onNavOpen }) => {
           {!lgUp && (
             <>
               <IconButton onClick={onNavOpen}>
-                <BiMenu size="30" color={colors.bgWhiteSecondary} />
+                <BiMenu size="2rem" color={colors.bgWhiteSecondary} />
               </IconButton>
             </>
           )}

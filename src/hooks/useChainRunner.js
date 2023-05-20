@@ -69,13 +69,14 @@ export default function useChainRunner() {
           'bifrostBridge',
           _tokenAddressFromNetwork,
           BigNumber(_amount),
-          BigNumber(137),
-          BigNumber(3068),
+          BigNumber(_fromNetwork),
+          BigNumber(_toNetwork),
         ),
         { pending: 'Please wait for the bridge...' },
         { closeButton: true },
       );
-      console.log(JSON.stringify(response.result, undefined, 2));
+      return JSON.stringify(response.result, undefined, 2).statusInfo.status
+        .amount;
     } else {
       toast.error('Please log in first', {
         autoClose: 1500,

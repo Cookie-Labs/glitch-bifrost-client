@@ -142,39 +142,60 @@ export const networks = {
 
 export const networksIcons = {
   bifrostMain: {
+    name: 'Bifrost Mainnet',
     icon: BifrostIcon,
   },
   bifrostTest: {
+    name: 'Bifrost Testnet',
     icon: BifrostIcon,
   },
   ethereumMain: {
+    name: 'Ethereum Mainnet',
     icon: EthereumIcon,
   },
   ethereumTest: {
+    name: 'Ethereum Testnet',
     icon: EthereumIcon,
   },
   bnbMain: {
+    name: 'BSC Mainnet',
     icon: BSCIcon,
   },
   bnbTest: {
+    name: 'BSC Testnet',
     icon: BSCIcon,
   },
   avalancheMain: {
+    name: 'Avalanche Mainnet',
     icon: AvalancheIcon,
   },
   avalancheTest: {
+    name: 'Avalanche Testnet',
     icon: AvalancheIcon,
   },
   klaytnMain: {
+    name: 'Klaytn Mainnet',
     icon: KlaytnIcon,
   },
   klaytnTest: {
+    name: 'Klaytn Testnet',
     icon: KlaytnIcon,
   },
   polygonMain: {
+    name: 'Polygon Mainnet',
     icon: PolygonIcon,
   },
   polygonTest: {
+    name: 'Polygon Testnet',
     icon: PolygonIcon,
+  },
+};
+
+export const M2Es = {
+  stepn: {
+    symbol: 'GMT',
+  },
+  kawai: {
+    symbol: 'KWI',
   },
 };

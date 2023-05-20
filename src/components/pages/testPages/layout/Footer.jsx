@@ -6,6 +6,7 @@ import { SIDE_NAV_WIDTH, FOOTER_H } from './layoutConst';
 import { BsTwitter, BsTelegram, BsDiscord } from 'react-icons/bs';
 import { useTheme, useMediaQuery } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { Divider } from '@atoms/Divider';
 
 const FooterContainer = styled.div`
   width: ${(props) =>
@@ -60,20 +61,6 @@ const FooterLinks = styled.div`
   gap: 1rem;
 `;
 
-const Divider = () => {
-  return (
-    <svg
-      width={1}
-      height={12}
-      viewBox="0 0 1 12"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect width={1} height={12} fill={colors.textSecondary} />
-    </svg>
-  );
-};
-
 const Footer = () => {
   const theme = useTheme();
   const lgUp = useMediaQuery(theme.breakpoints.up('lg'));
@@ -121,9 +108,9 @@ const Footer = () => {
         </TextWrapper>
         <FooterLinks>
           <FooterText>이용약관</FooterText>
-          <Divider />
+          <Divider color={colors.textSecondary} />
           <FooterText>개인정보처리방침</FooterText>
-          <Divider />
+          <Divider color={colors.textSecondary} />
           <FooterText>자주묻는질문</FooterText>
         </FooterLinks>
       </FooterContainer>

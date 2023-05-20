@@ -200,8 +200,8 @@ const SideBar = ({ open, onNavClose }) => {
         open={open}
         PaperProps={{
           sx: {
-            backgroundColor: `${colors.bgPrimary}`,
-            color: `${colors.textPrimary}`,
+            backgroundColor: `${colors.bgWhitePrimary}`,
+            color: `${colors.textBlack}`,
             width: SIDE_NAV_WIDTH,
           },
         }}
