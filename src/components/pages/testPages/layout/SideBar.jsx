@@ -6,33 +6,45 @@ import { Drawer, useTheme, useMediaQuery } from '@mui/material';
 import { Scrollbar } from '@atoms/scrollbar';
 import shoeBoxLogo from '@assets/images/ShoeBox_Logo.png';
 import SideNavItems from './SideNavItems';
-import { BiHome, BiBarChartAlt, BiGift, BiShoppingBag } from 'react-icons/bi';
+import {
+  BiHome,
+  BiGift,
+  BiShoppingBag,
+  BiCalendarCheck,
+} from 'react-icons/bi';
+import { AiOutlineSwap } from 'react-icons/ai';
 import { TbShoe } from 'react-icons/tb';
 import { SIDE_NAV_WIDTH, TOP_NAV_HEIGHT } from './layoutConst';
 import bmallImage from '@assets/images/Bmall_image.svg';
 
 const items = [
   {
-    title: 'OVERVIEW',
+    title: 'Overview',
     path: '/',
     icon: <BiHome size="2rem" />,
     color: `${colors.primary80}`,
   },
   {
-    title: 'SHOE SWAP',
+    title: 'Shoe Swap',
     path: '/shoeSwap',
-    icon: <BiBarChartAlt size="2rem" />,
+    icon: <AiOutlineSwap size="2rem" />,
     color: `${colors.primary80}`,
   },
   {
-    title: 'EVENT',
-    path: '/event',
+    title: 'Events',
+    path: '/events',
     icon: <BiGift size="2rem" />,
     color: `${colors.primary80}`,
   },
   {
-    title: 'MY SHOES',
-    path: '/myShoes',
+    title: 'My Calendar',
+    path: '/myCalendar',
+    icon: <BiCalendarCheck size="2rem" />,
+    color: `${colors.primary80}`,
+  },
+  {
+    title: 'My Page',
+    path: '/myPage',
     icon: <TbShoe size="2rem" />,
     color: `${colors.primary80}`,
   },

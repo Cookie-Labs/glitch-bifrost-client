@@ -13,7 +13,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const ShoesContainer = styled.div`
   width: 100%;
@@ -21,19 +21,19 @@ const ShoesContainer = styled.div`
   border: 1px solid ${colors.bgQuaternary};
   border-radius: 1rem;
   position: relative;
-`
+`;
 
 const LoadingWrapper = styled.div`
   position: absolute;
   top: 46%;
   left: 46%;
-`
+`;
 
-const ShoeboxMyShoesPage = () => {
+const ShoeboxMyPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-  const {account} = useRecoilValue(userState);
+  const { account } = useRecoilValue(userState);
 
   // const {} = useRaffle();
 
@@ -46,7 +46,7 @@ const ShoeboxMyShoesPage = () => {
 
   setTimeout(() => {
     setIsLoading(false);
-  }, 2500)
+  }, 2500);
 
   return (
     <Container>
@@ -63,4 +63,4 @@ const ShoeboxMyShoesPage = () => {
   );
 };
 
-export default ShoeboxMyShoesPage;
+export default ShoeboxMyPage;
