@@ -7,10 +7,6 @@ import LoadingSpinner from '@atoms/LoadingSpinner';
 import m2eImage from '@assets/images/m2e.png';
 import p2eImage from '@assets/images/p2e.png';
 
-import useWeb3 from '@hooks/useWeb3';
-import useOracle from '@hooks/useOracle';
-import useChainRunner from '@hooks/useChainRunner';
-
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -76,24 +72,12 @@ const CoinTableWrapper = styled.div`
 const CoinTableImage = styled.img`
   max-width: 100%;
   height: auto;
-`
+`;
 
 const LoadingWrapper = styled.div`
   position: absolute;
   top: 46%;
   left: 46%;
-`;
-
-const TestButton = styled.button`
-  border: 1px solid ${colors.bgPrimary};
-  padding: 0.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${colors.bgQuaternary};
-    transition: 0.3s;
-  }
 `;
 
 const ShoeboxOverviewPage = () => {
