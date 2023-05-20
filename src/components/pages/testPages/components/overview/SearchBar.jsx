@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import * as colors from '@styles/colors';
 import { useNavigate } from 'react-router-dom';
-import { AiOutlineSearch } from 'react-icons/ai';
+import {BiSearchAlt2} from 'react-icons/bi';
 
 const SearchBarContainer = styled.div`
   display: flex;
@@ -14,28 +14,28 @@ const SearchBarContainer = styled.div`
 
 const SearchTerm = styled.input`
   width: 100%;
-  height: 3rem;
+  height: 2.5rem;
   border: 3px solid ${colors.bgWhiteSecondary};
   background-color: ${colors.bgWhiteSecondary};
   padding: 0.5rem;
-  border-radius: 0 1rem 1rem 0;
   outline: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: ${colors.textBlack};
+  border-radius: 0 0.5rem 0.5rem 0;
 `;
 
 const SearchButton = styled.button`
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border: 3px solid ${colors.bgWhiteSecondary};
   background-color: ${colors.bgWhiteSecondary};
-  border-radius: 1rem 0 0 1rem;
   outline: none;
   color: ${colors.textBlack};
   cursor: pointer;
+  border-radius: 0.5rem 0 0 0.5rem;
 `;
 
-const SearchBar = () => {
+const SearchBar = ({place, path}) => {
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
 
@@ -44,21 +44,21 @@ const SearchBar = () => {
       <SearchButton
         type="submit"
         onClick={() => {
-          navigate({ pathname: '/', search: `?typing=${query}` });
+          navigate({ pathname: path, search: `?typing=${query}` });
         }}
         value={query}
       >
-        <AiOutlineSearch size="2rem" />
+        <BiSearchAlt2 size="1.6rem" />
       </SearchButton>
       <SearchTerm
         type="text"
-        placeholder="Search X2E Coins"
+        placeholder={place}
         onChange={(e) => {
           setQuery(e.target.value);
         }}
         onKeyUp={() => {
           if (window.event.keyCode === 13) {
-            navigate({ pathname: '/', search: `?typing=${query}` });
+            navigate({ pathname: path, search: `?typing=${query}` });
           }
         }}
       />

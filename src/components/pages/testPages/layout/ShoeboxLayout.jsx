@@ -14,7 +14,6 @@ const LayoutWrapper = styled.div`
   width: ${(props) =>
     props.lgUp ? `calc(100vw - ${SIDE_NAV_WIDTH})` : '100vw'};
   min-height: calc(100vh);
-  padding: 2rem 4.5rem;
 `;
 
 const ShoeboxLayout = () => {

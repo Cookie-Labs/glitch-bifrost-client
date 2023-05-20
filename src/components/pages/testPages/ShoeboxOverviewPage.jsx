@@ -9,11 +9,12 @@ import p2eImage from '@assets/images/p2e.png';
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
+  padding: 2.5rem 4rem;
 `;
 
 const SearchBarWrapper = styled.div`
@@ -65,7 +66,7 @@ const TabButton = styled.button`
 const CoinTableWrapper = styled.div`
   width: 100%;
   min-height: 30rem;
-  border-radius: 10px;
+  border-radius: 1rem;
   position: relative;
 `;
 
@@ -91,7 +92,7 @@ const ShoeboxOverviewPage = () => {
   return (
     <Container>
       <SearchBarWrapper>
-        <SearchBar />
+        <SearchBar place="Search X2E Coins" path="/" />
       </SearchBarWrapper>
       <OverviewTitle>Today's X2E Prices by Market Cap</OverviewTitle>
       <OverviewSubTitle>
