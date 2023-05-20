@@ -65,7 +65,7 @@ const CheckWallet = () => {
       toast.success('Your network has changed.', {
         autoClose: 1500,
       });
-      setTimeout(() => window.location.reload(), 1500);
+      // setTimeout(() => window.location.reload(), 1500);
     }
   }, [walletType, setAccount, setNetworkId, setWalletType, navigate]);
 

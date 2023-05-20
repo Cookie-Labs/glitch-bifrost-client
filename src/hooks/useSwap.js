@@ -84,7 +84,7 @@ export default function useSwap() {
 
     const ERC20Token = new web3.eth.Contract(ERC20_ABI, ERC20);
 
-    const approvedAmount = web3.utils.toWei(amount.toString(), 'wei');
+    const approvedAmount = web3.utils.toWei(String(amount), 'wei');
     const approvalTx = await ERC20Token.methods
       .approve(ROUTER, approvedAmount)
       .send({ from: MSG_SENDER })

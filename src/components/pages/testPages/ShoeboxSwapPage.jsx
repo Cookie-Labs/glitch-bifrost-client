@@ -5,8 +5,8 @@ import { BiChevronDown, BiDownArrowAlt } from 'react-icons/bi';
 import shoeswapImage from '@assets/images/shoeswap_background.png';
 import { Divider } from '@atoms/Divider';
 import { toast } from 'react-toastify';
-// import useChainRunner from '@hooks/useChainRunner';
-// import useSwap from '@hooks/useSwap';
+import useChainRunner from '@hooks/useChainRunner';
+import useSwap from '@hooks/useSwap';
 // import useFactory from '@hooks/useFactory';
 // import usePair from '@hooks/usePair';
 
@@ -264,6 +264,7 @@ const SuccessMsg = styled.span`
 `;
 
 const ShoeboxSwapPage = () => {
+  const TokenAddressFromNetwork = '0x0000000000000000000000000000000000000000';
   const BifrostNetworkId = 49088; // mainnet: 3068
   const EthereumNetworkId = 1;
   const BSCNetworkId = 56;
@@ -293,17 +294,57 @@ const ShoeboxSwapPage = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isCrossSwap, setIsCrossSwap] = useState(false);
+  const [isLoading2, setIsLoading2] = useState(false);
+  const [isCrossSwap2, setIsCrossSwap2] = useState(false);
+
+  const { implementBridge } = useChainRunner();
+  const { swapExactTokensForETH, swapExactTokensForTokens } = useSwap();
 
   async function doCrossChainSwap() {
     setIsCrossSwap(false);
     setIsLoading(true);
     try {
+      const amount = await swapExactTokensForETH(fromAmount);
+      const amountAfterBridge = await implementBridge(
+        TokenAddressFromNetwork,
+        amount,
+        PolygonNetworkId,
+        BifrostNetworkId,
+      );
+
+      try {
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: '0xbfc0' }],
+        });
+
+        localStorage.setItem('_chainId', '0xbfc0');
+      } catch (switchError) {
+        toast.error('Switch network FAILED', {
+          autoClose: 1500,
+        });
+      }
+
+      await swapExactTokensForTokens(3);
     } catch (err) {
       console.log(err);
       toast.error('Shoe swap failed.');
     }
     setIsCrossSwap(true);
     setIsLoading(false);
+  }
+
+  async function doCrossChainSwap2() {
+    setIsCrossSwap2(false);
+    setIsLoading2(true);
+    try {
+      swapExactTokensForTokens(3);
+    } catch (err) {
+      console.log(err);
+      toast.error('Shoe swap failed.');
+    }
+    setIsCrossSwap2(true);
+    setIsLoading2(true);
   }
 
   const handleFromAmount = (e) => {

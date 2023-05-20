@@ -62,21 +62,33 @@ export default function useChainRunner() {
     _toNetwork,
   ) {
     if (client !== null) {
+      // const res = await client.call(
+      //   "Glitch.predict.bridge",
+      //   undefined,
+      //   _tokenAddressFromNetwork,
+      //   BigNumber(_amount),
+      //   BigNumber(_fromNetwork),
+      //   BigNumber(_toNetwork),
+      // );
+
+      // const optimalAmount = res.result.predictions[0].amountDst;
+      // console.log("optimal amount : " + optimalAmount);
+      const optimalAmount = 3;
+
       const response = await toast.promise(
         client.call(
           'Glitch.run.bridge',
           undefined,
           'bifrostBridge',
           _tokenAddressFromNetwork,
-          BigNumber(_amount),
+          BigNumber(3),
           BigNumber(_fromNetwork),
           BigNumber(_toNetwork),
         ),
         { pending: 'Please wait for the bridge...' },
         { closeButton: true },
       );
-      return JSON.stringify(response.result, undefined, 2).statusInfo.status
-        .amount;
+      return optimalAmount;
     } else {
       toast.error('Please log in first', {
         autoClose: 1500,
