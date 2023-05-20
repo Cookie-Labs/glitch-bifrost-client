@@ -22,22 +22,26 @@ const ShoeboxOverviewPage = () => {
   const { client, approveBridge, implementBridge } = useChainRunner();
 
   const [bridgeTokenAddress, setBridgeTokenAddress] = useState(
-    '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
+    '0x0000000000000000000000000000000000000000',
   ); // polygon WMATIC
   const [bridgeAmount, setBridgeAmount] = useState(0);
   const [bridgeFromNetwork, setBridgeFromNetwork] = useState(137); // polygon main network
   const [bridgeToNetwork, setBridgeToNetwork] = useState(3068); // bifrost main network
 
   // console.log(web3);
-  // console.log(client);
+  console.log(client);
 
   async function doBridge() {
     try {
-      await approveBridge(bridgeTokenAddress, bridgeAmount, bridgeFromNetwork);
+      // await approveBridge(bridgeTokenAddress, bridgeAmount, bridgeFromNetwork);
+      console.log(bridgeTokenAddress);
+      console.log(bridgeAmount);
+      console.log(bridgeFromNetwork);
+      console.log(bridgeToNetwork);
       await implementBridge(
         bridgeTokenAddress,
         bridgeAmount,
-        bridgeTokenAddress,
+        bridgeFromNetwork,
         bridgeToNetwork,
       );
     } catch (err) {
