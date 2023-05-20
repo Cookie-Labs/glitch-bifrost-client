@@ -29,16 +29,20 @@ export default function useChainRunner() {
     } else return;
   }, [walletType, networkId]);
 
-  async function approveBridge(_amount) {
+  async function approveBridge(
+    _tokenAddressFromNetwork,
+    _amount,
+    _fromNetwork,
+  ) {
     if (client !== null) {
       const response = await toast.promise(
         client.call(
           'Glitch.approve.bridge',
           undefined,
           'bifrostBridge',
-          '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
+          _tokenAddressFromNetwork,
           BigNumber(_amount),
-          BigNumber(137),
+          BigNumber(_fromNetwork),
         ),
         { pending: 'Please wait for the approve...' },
         { closeButton: true },
@@ -51,14 +55,19 @@ export default function useChainRunner() {
     }
   }
 
-  async function implementBridge(_amount) {
+  async function implementBridge(
+    _tokenAddressFromNetwork,
+    _amount,
+    _fromNetwork,
+    _toNetwork,
+  ) {
     if (client !== null) {
       const response = await toast.promise(
         client.call(
           'Glitch.run.bridge',
           undefined,
           'bifrostBridge',
-          '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
+          _tokenAddressFromNetwork,
           BigNumber(_amount),
           BigNumber(137),
           BigNumber(3068),

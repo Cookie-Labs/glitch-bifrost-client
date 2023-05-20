@@ -20,15 +20,26 @@ const ShoeboxOverviewPage = () => {
   const { web3, signMessage, isSigned } = useWeb3();
   const { BFC, BIFI, ETH, BNB, MATIC } = useOracle();
   const { client, approveBridge, implementBridge } = useChainRunner();
+
+  const [bridgeTokenAddress, setBridgeTokenAddress] = useState(
+    '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
+  ); // polygon WMATIC
   const [bridgeAmount, setBridgeAmount] = useState(0);
+  const [bridgeFromNetwork, setBridgeFromNetwork] = useState(137); // polygon main network
+  const [bridgeToNetwork, setBridgeToNetwork] = useState(3068); // bifrost main network
 
   // console.log(web3);
   // console.log(client);
 
   async function doBridge() {
     try {
-      await approveBridge(bridgeAmount);
-      await implementBridge(bridgeAmount);
+      await approveBridge(bridgeTokenAddress, bridgeAmount, bridgeFromNetwork);
+      await implementBridge(
+        bridgeTokenAddress,
+        bridgeAmount,
+        bridgeTokenAddress,
+        bridgeToNetwork,
+      );
     } catch (err) {
       console.error(err);
     }
